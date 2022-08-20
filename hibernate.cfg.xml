@@ -21,8 +21,14 @@
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
 
-		<!-- Set the current session context -->
-		<property name="current_session_context_class">thread</property>
+	<!-- Set the current session context -->
+	<property name="current_session_context_class">thread</property>
+	    
+	<!-- hibernate to ddl mapping -->
+	<property name="hibernate.hbm2ddl.auto">update</property>
+	    
+	<!-- mapping class name -->    
+	<mapping class="com.ncu.orm_basics.Student" />
  
     </session-factory>
 
