@@ -92,11 +92,13 @@ public class Instructor {
 		return "Instructor [id=" + id + ", fName=" + fName + ", lName=" + lName + ", email=" + email + "]";
 	}
 	
+	/* added convenience method to sync the bi-directional relationship */ 
 	public void addCourses(Course course) {
-		if (course == null) {
+		if (courses == null) {
 			courses = new ArrayList<>();
-			courses.add(course);
 		}
+		courses.add(course);
+		course.setInstructor(this);
 	}
 	
 }
