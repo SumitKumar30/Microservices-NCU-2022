@@ -23,15 +23,21 @@ public class InstructorDao {
 		
 		ins.setInstructorDetail(ins_detail);
 		
-		Course c1 = new Course("XYZ", 10);
+		Course c1 = new Course("Enterprise Web Apps", 50);
+		Course c2 = new Course("Microservices", 40);
+		Course c3 = new Course("Web Frameworks", 35);
+		
+		ins.addCourses(c1);
+		ins.addCourses(c2);
+		ins.addCourses(c3);
 		
 		List<Course> course = new ArrayList<Course>();
 		course.add(new Course("Enterprise Web Apps", 50));
 		course.add(new Course("Microservices", 40));
 		course.add(new Course("Web Frameworks", 35));
 		
-		ins.setCourses(course);
-		//ins.addCourses(c1);
+		//ins.setCourses(course);
+		
 		
 		// step 1: create a new session or open an existing session
 		Session session = sessionFactory.openSession();
