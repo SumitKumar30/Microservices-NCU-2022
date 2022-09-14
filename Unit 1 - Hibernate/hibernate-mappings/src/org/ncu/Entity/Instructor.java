@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,10 +30,13 @@ public class Instructor {
 	@JoinColumn(name = "instructor_detail", referencedColumnName = "instructorId")
 	private InstructorDetail instructorDetail;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "instructor")
+	@OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "instructor")
 	//@JoinColumn(name = "courses" , referencedColumnName = "cid")
 	private List<Course> courses;
 	
+	public Instructor() {
+		// default constructor
+	}
 	
 	public Instructor(String fName, String lName, String email) {
 		super();
@@ -93,12 +97,12 @@ public class Instructor {
 	}
 	
 	/* added convenience method to sync the bi-directional relationship */ 
-	public void addCourses(Course course) {
-		if (courses == null) {
-			courses = new ArrayList<>();
-		}
-		courses.add(course);
-		course.setInstructor(this);
-	}
+	
+	  public void addCourses(Course course) 
+	  { if (courses == null) { 
+		  courses = new ArrayList<>(); 
+		  } 
+	  courses.add(course); 
+	  course.setInstructor(this); }
 	
 }

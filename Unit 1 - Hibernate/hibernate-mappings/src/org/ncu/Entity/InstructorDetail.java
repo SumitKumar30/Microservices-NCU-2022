@@ -15,6 +15,9 @@ public class InstructorDetail {
 	private String insProfile;
 	private String address;
 	
+	public InstructorDetail() {
+		
+	}
 	
 	public InstructorDetail( String insProfile, String address) {
 		super();
