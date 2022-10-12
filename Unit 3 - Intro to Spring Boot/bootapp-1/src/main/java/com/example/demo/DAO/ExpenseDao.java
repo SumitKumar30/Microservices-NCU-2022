@@ -24,16 +24,7 @@ public class ExpenseDao {
 	}
 
 	public Expense findById(int id) {
-		/*
-		 * int index = expenses.indexOf(new Expense(id)); return index ==
-		 * -1?null:expenses.get(index);
-		 */
-
-		List<Expense> exps = getAllExpenses();
-		for (Expense list : exps) {
-			if (list.getId() == id)
-				return list;
-		}
+		// add your logic here
 		return null;
 	}
 }
