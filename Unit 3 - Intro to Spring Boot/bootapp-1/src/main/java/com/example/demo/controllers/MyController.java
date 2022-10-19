@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,11 +20,12 @@ import com.example.demo.exceptions.ExpenseNotFoundException;
 import com.example.demo.models.Expense;
 
 @RestController
+@RequestMapping(path = "/home")
 public class MyController {
 	@Autowired
 	ExpenseDao expenseDao;
 
-	@RequestMapping(method = RequestMethod.GET, path = "/")
+	@RequestMapping(method = RequestMethod.GET, path = "/hello")
 	public String getHello() {
 		return "Hello from Spring boot";
 	}
@@ -37,7 +40,7 @@ public class MyController {
 	public Map<String, List<Expense>> getAllExpenses() {
 		// return expenseDao.getAllExpenses();
 		Map<String, List<Expense>> map = new HashMap<>();
-		map.put("expenses", expenseDao.getAllExpenses());
+		map.put("Expenses", expenseDao.getAllExpenses());
 		return map;
 	}
 
@@ -56,5 +59,20 @@ public class MyController {
 			return expense;
 		else
 			throw new ExpenseNotFoundException(expenseId + " Not Found!");
+	}
+	
+	@DeleteMapping("/deleteexpense/{expenseId}")
+	public String deleteExpense(@PathVariable int expenseId) {
+		return expenseDao.deleteById(expenseId)?"Record Deleted Successfully!":"Record does not exist!";
+	}
+	
+	@PutMapping("/updateexpense/{expenseId}")
+	public String updateExpense(@PathVariable int expenseId, @RequestBody Expense expense) {
+		Expense exp =  expenseDao.updateExpense(expenseId, expense);
+		//return expenseDao.add(exp) ? "Record Updated Successfully!" : "Not Updated!!";
+		
+		  if(exp != null) return "Expense updated successfully!"; else return
+		  "Error updating Expense!";
+		 
 	}
 }

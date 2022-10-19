@@ -1,10 +1,10 @@
 package com.example.demo.models;
 
 public class Expense {
-	private int id;
-	private String name;
-	private double cost;
-	private String desc;
+		private int id;
+		private String name;
+		private double cost;
+		private String desc;
 
 	public Expense() {
 		super();
